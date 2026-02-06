@@ -32,7 +32,9 @@
             if (!targetUrl.startsWith('http')) {
                 targetUrl = 'https://' + targetUrl;
             }
-            destLink.href = targetUrl;
+            // ループ防止用のフラグを末尾に付与
+            const separator = targetUrl.includes('?') ? '&' : '?';
+            destLink.href = targetUrl + separator + 'from_reminder=true';
         } else {
             destLink.style.display = 'none';
         }
