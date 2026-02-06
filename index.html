@@ -18,7 +18,20 @@
         <p>「無意識のクリック」を「意識的な選択」に変える時間にできるよ。</p>
         <a href="javascript:history.back()" class="btn">戻って作業を続ける</a>
         <br>
-        <small style="display:block; margin-top:2rem; color:#a0aec0;">※どうしても見るなら、そのままURLを入力するか履歴からどうぞ</small>
+        <a id="destination" href="#" class="btn btn-primary">それでも 10分だけ見る</a>
     </div>
+
+    <script>
+        // URLパラメータ "?url=..." から本来の目的地を取得
+        const params = new URLSearchParams(window.location.search);
+        const targetUrl = params.get('url');
+        const destLink = document.getElementById('destination');
+
+        if (targetUrl) {
+            destLink.href = targetUrl;
+        } else {
+            destLink.style.display = 'none'; // URLがない場合は非表示
+        }
+    </script>
 </body>
 </html>
