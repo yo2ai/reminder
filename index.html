@@ -24,14 +24,18 @@
     <script>
         // URLパラメータ "?url=..." から本来の目的地を取得
         const params = new URLSearchParams(window.location.search);
-        const targetUrl = params.get('url');
+        let targetUrl = params.get('url');
         const destLink = document.getElementById('destination');
-
+    
         if (targetUrl) {
+            // もしURLが http で始まっていない場合（ドメイン名だけの場合など）の補完
+            if (!targetUrl.startsWith('http')) {
+                targetUrl = 'https://' + targetUrl;
+            }
             destLink.href = targetUrl;
         } else {
-            destLink.style.display = 'none'; // URLがない場合は非表示
+            destLink.style.display = 'none';
         }
-    </script>
+   </script>
 </body>
 </html>
